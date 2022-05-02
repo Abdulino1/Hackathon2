@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import MenuOrder from "./components/MenuOrder";
+import { useState, useEffect } from "react";
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [pizzaData, setPizzaData] = useState();
+  const getPizza = async () => {
+    try {
+      const response = await fetch("/");
+      const pizzas = await response.json();
+      console.log(pizzas);
+      return setPizzaData(pizzas);
+    } catch (error) {}
+  };
+  useEffect(() => {
+    getPizza();
+  }, []);
+  console.log(pizzaData);
+  return <MenuOrder />;
 }
 
 export default App;

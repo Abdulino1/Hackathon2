@@ -6,6 +6,7 @@ const Pizza = require("../models/pizza");
 router.get("/", async (req, res) => {
   try {
     const pizzas = await Pizza.find({});
+    console.log(pizzas);
     res.send(pizzas);
   } catch (err) {
     res.status(400).send(err);

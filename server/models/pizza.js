@@ -22,7 +22,10 @@ const pizzaSchema = new Schema({
 
 // create model from schema
 const Pizza = mongoose.model("Pizza", pizzaSchema);
-
+const findPizzas = async (pizza) => {
+  const findPizza = await pizza.find();
+  return findPizza; 
+}
 // export model
 
-module.exports = Pizza;
+module.exports = {findPizzas, Pizza};
